@@ -1,14 +1,20 @@
 package com.example.applikasjonsadministrasjon.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
-public class stilling {
+@Entity
+@Getter
+@Setter
+@Table(name = "stilling")
+public class Stilling {
     @Id
     @Column(unique = true, nullable = false, updatable = false)
-    private String id;
+    private int id;
 
     @Column(length = 50,nullable = false)
     private String tittel;
@@ -26,5 +32,7 @@ public class stilling {
     @Column(length = 50,nullable = false)
     private String PDF;
 
+    @ManyToMany(mappedBy = "stilling")
+    private Set<User> users;
 
 }

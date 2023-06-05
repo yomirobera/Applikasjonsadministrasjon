@@ -1,6 +1,11 @@
 package com.example.applikasjonsadministrasjon.services.stilling;
 
+import com.example.applikasjonsadministrasjon.models.Stilling;
+import com.example.applikasjonsadministrasjon.models.User;
 import com.example.applikasjonsadministrasjon.services.CrudService;
 
-public interface StillingService extends CrudService <Stilling, integer> {
+import java.util.Set;
+
+public interface StillingService extends CrudService <Stilling, Integer> {
+
 }

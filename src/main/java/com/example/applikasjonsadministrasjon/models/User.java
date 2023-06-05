@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -25,5 +27,6 @@ public class User {
     @JoinTable(name = "Bruker_Stilling",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "stilling_id"))
-    private set<Stilling> stillings;
+
+    private Set<Stilling> stilling;
 }
