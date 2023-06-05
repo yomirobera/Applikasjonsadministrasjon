@@ -1,4 +1,9 @@
 package com.example.applikasjonsadministrasjon.services.user;
 
-public interface UserService {
+import com.example.applikasjonsadministrasjon.models.User;
+import com.example.applikasjonsadministrasjon.services.CrudService;
+
+public interface UserService extends CrudService <User, String> {
+
+
 }
