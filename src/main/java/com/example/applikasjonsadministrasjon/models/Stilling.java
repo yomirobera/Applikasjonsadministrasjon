@@ -15,7 +15,6 @@ public class Stilling {
     @Id
     @Column(unique = true, nullable = false, updatable = false)
     private int id;
-
     @Column(length = 50,nullable = false)
     private String tittel;
     @Column(length = 50,nullable = false)

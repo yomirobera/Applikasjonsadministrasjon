@@ -5,10 +5,12 @@ import com.example.applikasjonsadministrasjon.models.User;
 import com.example.applikasjonsadministrasjon.repositories.StillingRepository;
 import com.example.applikasjonsadministrasjon.repositories.UserRepository;
 import com.example.applikasjonsadministrasjon.utils.exceptions.StillingNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Set;
 
+@Service
 public class StillingServiceImpl implements StillingService{
 
     private final StillingRepository stillingRepository;
