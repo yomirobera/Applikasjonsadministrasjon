@@ -52,6 +52,10 @@ public class UserController {
         URI location = URI.create("users/" + user.getId());
         return ResponseEntity.created(location).build();
     }
+    @GetMapping("{id}/getAllStilling")
+    public ResponseEntity getAllProjects(@PathVariable String id) {
+        return ResponseEntity.ok(stillingMapper.stillingToStillingDTO(userService.findAllStilling(id)));
+    }
 
 
 }

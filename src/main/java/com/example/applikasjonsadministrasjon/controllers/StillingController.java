@@ -50,4 +50,10 @@ public class StillingController {
         return ResponseEntity.created(location).build();
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity delete(@PathVariable int id) {
+        stillingService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

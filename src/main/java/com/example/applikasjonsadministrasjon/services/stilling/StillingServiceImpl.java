@@ -35,17 +35,28 @@ public class StillingServiceImpl implements StillingService{
 
     @Override
     public Stilling add(Stilling entity) {
-        return null;
+        stillingRepository.save(entity);
+        for (User u : entity.getUsers()) {
+            Set<Stilling> stilling = u.getStilling();
+            stilling.add(entity);
+            u.setStilling(stilling);
+            userRepository.save(u);
+        }
+        return stillingRepository.save(entity);
     }
 
-    @Override
+
     public void update(Stilling entity) {
-
+        stillingRepository.save(entity);
     }
 
     @Override
-    public void deleteById(Integer integer) {
-
+    public void deleteById(Integer id) {
+        Stilling stilling = stillingRepository.findById(id).orElseThrow(() -> new StillingNotFoundException(id));
+        for (User u : stilling.getUsers()) {
+            u.getStilling().remove(stilling);
+        }
+        stillingRepository.deleteById(id);
     }
 
 }
