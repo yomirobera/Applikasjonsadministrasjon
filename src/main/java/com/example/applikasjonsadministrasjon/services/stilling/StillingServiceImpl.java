@@ -29,8 +29,9 @@ public class StillingServiceImpl implements StillingService{
 
     @Override
     public Collection<Stilling> findAll() {
-        return null;
+        return stillingRepository.findAll();
     }
+
 
     @Override
     public Stilling add(Stilling entity) {
