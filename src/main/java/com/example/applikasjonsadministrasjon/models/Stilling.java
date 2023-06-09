@@ -28,7 +28,7 @@ public class Stilling {
     @Column(length = 50,nullable = false)
     private Date soknadsfrist;
 
-    @Column(length = 50,nullable = false)
+    @Column(length = 100)
     private String PDF;
 
     @ManyToMany(mappedBy = "stilling")
