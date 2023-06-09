@@ -25,7 +25,7 @@ public abstract class StillingMapper {
     @Mapping(target = "users", source = "users", qualifiedByName = "usersToIds")
     public abstract StillingDTO stillingToStillingDTO(Stilling stilling);
 
-    public abstract Collection<StillingDTO> stillingToStillingDTO(Collection<Stilling> users);
+    public abstract Collection<StillingDTO> stillingToStillingDTO(Collection<Stilling> stillinger);
 
     public abstract Stilling stillingUpdateDtoToStilling(StillingUpdateDTO projectDTO);
 
