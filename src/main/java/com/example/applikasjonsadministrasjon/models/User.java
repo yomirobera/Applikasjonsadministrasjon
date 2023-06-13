@@ -22,6 +22,9 @@ public class User {
     private String lastName;
     @Column(length = 50,nullable = false)
     private String email;
+    @Column(nullable = false)
+    private boolean selger;
+
 
     @ManyToMany
     @JoinTable(name = "Bruker_Stilling",
