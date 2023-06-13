@@ -56,4 +56,14 @@ public class StillingController {
         return ResponseEntity.noContent().build();
     }
 
+/*    @PostMapping("{id}/users/{uid}")
+    public ResponseEntity addUser(@RequestBody StillingPostDTO stillingPostDTO, @PathVariable int id, @PathVariable String uid){
+        Stilling stilling=stillingService.findById(id);
+        //stilling.getUsers()
+;
+
+    }
+*/
+
+
 }
