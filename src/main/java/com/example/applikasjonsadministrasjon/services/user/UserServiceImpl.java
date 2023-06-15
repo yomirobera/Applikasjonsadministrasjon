@@ -34,8 +34,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User add(User entity) {
-        return userRepository.save(entity);
+        User savedUser = userRepository.save(entity);
+
+        // Iterate through the stillings associated with the user
+        for (Stilling stilling : entity.getStilling()) {
+            // Add the user to the stilling
+            stilling.getUsers().add(savedUser);
+            // Update the stilling entity
+            stillingRepository.save(stilling);
+        }
+
+        return savedUser;
     }
+
 
     @Override
     public void update(User entity) {

@@ -15,6 +15,9 @@ public class Stilling {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(length = 50,nullable = false)
+    private String Firma;
     @Column(length = 50,nullable = false)
     private String tittel;
     @Column(length = 50,nullable = false)
@@ -29,9 +32,14 @@ public class Stilling {
     private Date soknadsfrist;
 
     @Column(length = 100)
-    private String PDF;
+    private String lenke;
+
+    @Column(length = 50,nullable = false)
+    private String kode;
 
     @ManyToMany(mappedBy = "stilling")
     private Set<User> users;
+
+
 
 }

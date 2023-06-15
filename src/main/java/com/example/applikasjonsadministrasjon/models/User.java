@@ -32,4 +32,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "stilling_id"))
 
     private Set<Stilling> stilling;
+
+
 }

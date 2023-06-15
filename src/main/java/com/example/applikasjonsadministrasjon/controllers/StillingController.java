@@ -2,13 +2,20 @@ package com.example.applikasjonsadministrasjon.controllers;
 
 import com.example.applikasjonsadministrasjon.mappers.StillingMapper;
 import com.example.applikasjonsadministrasjon.models.Stilling;
+import com.example.applikasjonsadministrasjon.models.User;
+import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingDTO;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingPostDTO;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingUpdateDTO;
 import com.example.applikasjonsadministrasjon.services.stilling.StillingService;
+import com.example.applikasjonsadministrasjon.services.user.UserService;
+import org.aspectj.lang.annotation.After;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Set;
 
 @CrossOrigin("*")
 @RestController
@@ -16,10 +23,12 @@ import java.net.URI;
 public class StillingController {
     private final StillingService stillingService;
     private final StillingMapper stillingMapper;
+    private final UserService userService;
 
-    public StillingController(StillingService stillingService, StillingMapper stillingMapper) {
+    public StillingController(StillingService stillingService, StillingMapper stillingMapper, UserService userService) {
         this.stillingService = stillingService;
         this.stillingMapper = stillingMapper;
+        this.userService= userService;
     }
 
     @GetMapping
@@ -55,5 +64,35 @@ public class StillingController {
         stillingService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+   @PutMapping("{id}/users/{uid}")
+   public ResponseEntity addUser(@PathVariable int id, @PathVariable String uid) {
+       Stilling stilling = stillingService.findById(id);
+       User user = userService.findById(uid);
+
+       if (stilling == null || user == null) {
+           // Handle invalid stilling or user
+           return ResponseEntity.badRequest().build();
+       }
+
+       // Add the user to the stilling
+       stilling.getUsers().add(user);
+       // Update the stilling
+       stillingService.update(stilling);
+
+       // Update the user's stilling
+       user.getStilling().add(stilling);
+       userService.update(user);
+
+       return ResponseEntity.noContent().build();
+   }
+
+
+
+
+
+
+
+
 
 }

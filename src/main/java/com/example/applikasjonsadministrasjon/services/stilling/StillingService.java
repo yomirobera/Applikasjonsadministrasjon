@@ -8,4 +8,8 @@ import java.util.Set;
 
 public interface StillingService extends CrudService <Stilling, Integer> {
 
+
+
+
+
 }
