@@ -35,14 +35,20 @@ public class StillingServiceImpl implements StillingService{
 
     @Override
     public Stilling add(Stilling entity) {
-        stillingRepository.save(entity);
+        Stilling savedStilling = stillingRepository.save(entity);
         for (User u : entity.getUsers()) {
-            Set<Stilling> stilling = u.getStilling();
+
+
+
+            u.getStilling().add(savedStilling);
+            userRepository.save(u);
+
+            /*Set<Stilling> stilling = u.getStilling();
             stilling.add(entity);
             u.setStilling(stilling);
-            userRepository.save(u);
+            userRepository.save(u);*/
         }
-        return stillingRepository.save(entity);
+        return savedStilling;
     }
 
 
@@ -58,5 +64,13 @@ public class StillingServiceImpl implements StillingService{
         }
         stillingRepository.deleteById(id);
     }
+
+
+
+
+
+
+
+
 
 }

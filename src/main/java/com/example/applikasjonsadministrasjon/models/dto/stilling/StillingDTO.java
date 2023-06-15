@@ -14,6 +14,7 @@ public class StillingDTO {
 
     private int id;
 
+    private String firma;
     private String tittel;
 
     private String beskrivelse;
@@ -24,7 +25,9 @@ public class StillingDTO {
 
     private Date soknadsfrist;
 
-    private String PDF;
+    private String lenke;
+
+    private String kode;
 
     private Set<String> users;
 }
