@@ -68,7 +68,7 @@ public class StillingController {
    @PutMapping("{id}/users/{uid}")
    public ResponseEntity addUser(@PathVariable int id, @PathVariable String uid) {
        Stilling stilling = stillingService.findById(id);
-       User user = userService.findById(uid);
+       User user =userService.findById(uid);
 
        if (stilling == null || user == null) {
            // Handle invalid stilling or user
@@ -77,17 +77,26 @@ public class StillingController {
 
        // Add the user to the stilling
        stilling.getUsers().add(user);
+       //stillingService.add(stilling);
        // Update the stilling
        stillingService.update(stilling);
 
        // Update the user's stilling
+       //userService.add(user);
        user.getStilling().add(stilling);
        userService.update(user);
 
        return ResponseEntity.noContent().build();
    }
 
+    @GetMapping("{id}/users")
+    public ResponseEntity getUsersByStillingId(@PathVariable int id) {
+        StillingDTO stilling=stillingMapper.stillingToStillingDTO(stillingService.findById(id));
+        Set<String> users=stilling.getUsers();
 
+
+        return ResponseEntity.ok(users);
+    }
 
 
 
