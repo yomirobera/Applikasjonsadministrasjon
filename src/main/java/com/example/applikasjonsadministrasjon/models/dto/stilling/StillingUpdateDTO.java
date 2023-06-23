@@ -25,6 +25,7 @@ public class StillingUpdateDTO {
 
     private String kode;
 
+    private Set<String> users;
 
 
 }

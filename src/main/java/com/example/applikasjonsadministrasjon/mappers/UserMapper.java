@@ -7,9 +7,8 @@ import com.example.applikasjonsadministrasjon.models.dto.user.UserPostDTO;
 import com.example.applikasjonsadministrasjon.models.dto.user.UserUpdateDTO;
 import com.example.applikasjonsadministrasjon.repositories.StillingRepository;
 import com.example.applikasjonsadministrasjon.repositories.UserRepository;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
+import org.mapstruct.*;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
@@ -21,6 +20,12 @@ public abstract class UserMapper {
 
     @Autowired
     StillingRepository stillingRepository;
+
+   @Autowired
+    UserRepository userRepository;
+
+
+
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "stillingToIds")
     public abstract UserDTO userToUserDto(User user);
 
@@ -32,14 +37,30 @@ public abstract class UserMapper {
     public abstract User userUpdateDtoToUser(UserUpdateDTO userDTO);
 
 
-    //@Mapping(target = "stilling", source = "stilling", qualifiedByName = "idsToUsers")
+    @Mapping(target = "stilling", source = "stilling", qualifiedByName = "idsToStilling")
     public abstract User userPostDtoToUser(UserPostDTO userDto);
+
+
+
+
+
+
+    @Mapping(source = "users", target ="users" , qualifiedByName = "stringsToUsers")
+    @Mapping(target = "stilling", source = "stilling", qualifiedByName = "stillingToIds")
+    public abstract Set<User> stringsUsersToUsers(Set<String> users);
+
+    @AfterMapping
+    protected void updateStillingField(Set<String> users, @MappingTarget Set<User> userSet) {
+        if (users != null && userSet != null) {
+            userSet.forEach(user -> user.setStilling(null));
+        }
+    }
 
     @Named("stillingToIds")
     Set<Integer> mapStilling(Set<Stilling> source) {
         if (source == null) return null;
-        return source.stream().map(p -> p.getId()
-        ).collect(Collectors.toSet());
+        return source.stream().map(Stilling::getId)
+        .collect(Collectors.toSet());
     }
 
     @Named("idsToStilling")
@@ -50,4 +71,28 @@ public abstract class UserMapper {
                 .collect(Collectors.toSet());
     }
 
+
+    @Named("stringsToUsers")
+    Set<User> stringsToUsers(Set<String> users) {
+        if (users == null) return null;
+        return users.stream()
+                .map(this::findUserById)
+                .collect(Collectors.toSet());
+    }
+
+    protected User findUserById(String id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid id: " + id));
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
 package com.example.applikasjonsadministrasjon.controllers;
 
 import com.example.applikasjonsadministrasjon.mappers.StillingMapper;
+import com.example.applikasjonsadministrasjon.mappers.UserMapper;
 import com.example.applikasjonsadministrasjon.models.Stilling;
 import com.example.applikasjonsadministrasjon.models.User;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingDTO;
@@ -8,13 +9,10 @@ import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingPostDT
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingUpdateDTO;
 import com.example.applikasjonsadministrasjon.services.stilling.StillingService;
 import com.example.applikasjonsadministrasjon.services.user.UserService;
-import org.aspectj.lang.annotation.After;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Set;
 
 @CrossOrigin("*")
@@ -25,10 +23,13 @@ public class StillingController {
     private final StillingMapper stillingMapper;
     private final UserService userService;
 
-    public StillingController(StillingService stillingService, StillingMapper stillingMapper, UserService userService) {
+    private final UserMapper userMapper;
+
+    public StillingController(StillingService stillingService, StillingMapper stillingMapper, UserService userService, UserMapper userMapper) {
         this.stillingService = stillingService;
         this.stillingMapper = stillingMapper;
         this.userService= userService;
+        this.userMapper = userMapper;
     }
 
     @GetMapping
@@ -94,8 +95,12 @@ public class StillingController {
         StillingDTO stilling=stillingMapper.stillingToStillingDTO(stillingService.findById(id));
         Set<String> users=stilling.getUsers();
 
+        Set<User> usersObj = userMapper.stringsUsersToUsers(users);
 
-        return ResponseEntity.ok(users);
+
+
+
+        return ResponseEntity.ok(usersObj);
     }
 
 
