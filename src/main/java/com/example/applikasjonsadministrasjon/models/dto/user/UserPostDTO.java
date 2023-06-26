@@ -13,5 +13,7 @@ public class UserPostDTO {
     private String email;
     private boolean selger;
 
+    private Set<Integer> madePositions;
+
     private Set<Integer> stilling;
 }

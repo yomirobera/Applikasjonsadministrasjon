@@ -5,6 +5,8 @@
     import lombok.Getter;
     import lombok.Setter;
 
+    import java.util.Collection;
+    import java.util.List;
     import java.util.Set;
 
     @Entity
@@ -25,7 +27,8 @@
         @Column(nullable = false)
         private boolean selger;
 
-
+        @OneToMany
+        private Set<Stilling> madePositions;
         @ManyToMany
         @JoinTable(name = "Bruker_Stilling",
                 joinColumns = @JoinColumn(name = "user_id"),

@@ -27,17 +27,20 @@ public abstract class UserMapper {
 
 
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "stillingToIds")
+    //@Mapping(target = "madePositions", source= "stilling", qualifiedByName = "stillingToIds")
+    @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "stillingToIds")
     public abstract UserDTO userToUserDto(User user);
 
 
     public abstract Collection<UserDTO> userToUserDto(Collection<User> users);
 
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "idsToStilling")
-
+    @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "idsToStilling")
     public abstract User userUpdateDtoToUser(UserUpdateDTO userDTO);
 
 
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "idsToStilling")
+    @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "idsToStilling")
     public abstract User userPostDtoToUser(UserPostDTO userDto);
 
 
@@ -62,6 +65,9 @@ public abstract class UserMapper {
         return source.stream().map(Stilling::getId)
         .collect(Collectors.toSet());
     }
+
+
+
 
     @Named("idsToStilling")
     Set<Stilling> mapToUser(Set<Integer> source) {

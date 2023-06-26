@@ -57,5 +57,7 @@ public class UserController {
         return ResponseEntity.ok(stillingMapper.stillingToStillingDTO(userService.findAllStilling(id)));
     }
 
+   
+
 
 }

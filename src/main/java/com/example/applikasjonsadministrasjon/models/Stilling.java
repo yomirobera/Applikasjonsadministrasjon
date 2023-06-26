@@ -37,6 +37,15 @@ public class Stilling {
     @Column(length = 50,nullable = false)
     private String kode;
 
+    @ManyToOne
+    @JoinColumn(name="madePositions")
+    private User madeByUser;
+
+    public void setMadeByUser(User user) {
+        this.madeByUser = user;
+        user.getMadePositions().add(this);
+    }
+
     @ManyToMany(mappedBy = "stilling")
     private Set<User> users;
 

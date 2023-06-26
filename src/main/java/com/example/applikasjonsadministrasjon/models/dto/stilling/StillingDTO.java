@@ -1,5 +1,6 @@
 package com.example.applikasjonsadministrasjon.models.dto.stilling;
 
+import com.example.applikasjonsadministrasjon.models.Stilling;
 import com.example.applikasjonsadministrasjon.models.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -28,6 +29,7 @@ public class StillingDTO {
     private String lenke;
 
     private String kode;
+    private String madeByUser;
 
     private Set<String> users;
 }

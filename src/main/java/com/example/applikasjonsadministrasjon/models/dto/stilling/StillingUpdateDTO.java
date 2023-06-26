@@ -1,5 +1,6 @@
 package com.example.applikasjonsadministrasjon.models.dto.stilling;
 
+import com.example.applikasjonsadministrasjon.models.Stilling;
 import com.example.applikasjonsadministrasjon.models.User;
 import lombok.Data;
 
@@ -25,6 +26,7 @@ public class StillingUpdateDTO {
 
     private String kode;
 
+    private String madeByUser;
     private Set<String> users;
 
 
