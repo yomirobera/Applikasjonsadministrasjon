@@ -50,7 +50,7 @@ public abstract class UserMapper {
 
     @Mapping(source = "users", target ="users" , qualifiedByName = "stringsToUsers")
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "stillingToIds")
-    @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "stillingToIds", ignore = true)
+    @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "stillingToIds")
     public abstract Set<User> stringsUsersToUsers(Set<String> users);
 
     @AfterMapping
