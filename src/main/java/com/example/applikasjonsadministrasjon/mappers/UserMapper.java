@@ -50,12 +50,20 @@ public abstract class UserMapper {
 
     @Mapping(source = "users", target ="users" , qualifiedByName = "stringsToUsers")
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "stillingToIds")
+    @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "stillingToIds", ignore = true)
     public abstract Set<User> stringsUsersToUsers(Set<String> users);
 
     @AfterMapping
     protected void updateStillingField(Set<String> users, @MappingTarget Set<User> userSet) {
         if (users != null && userSet != null) {
             userSet.forEach(user -> user.setStilling(null));
+        }
+    }
+
+    @AfterMapping
+    protected void updateMadePositionField(Set<String> users, @MappingTarget Set<User> userSet) {
+        if (users != null && userSet != null) {
+            userSet.forEach(user -> user.setMadePositions(null));
         }
     }
 
