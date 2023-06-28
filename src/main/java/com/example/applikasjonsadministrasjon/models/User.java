@@ -1,5 +1,7 @@
     package com.example.applikasjonsadministrasjon.models;
 
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonManagedReference;
     import jakarta.persistence.*;
 
     import lombok.Getter;
@@ -27,7 +29,7 @@
         @Column(nullable = false)
         private boolean selger;
 
-        @OneToMany
+        @OneToMany(mappedBy = "madeByUser")
         private Set<Stilling> madePositions;
         @ManyToMany
         @JoinTable(name = "Bruker_Stilling",

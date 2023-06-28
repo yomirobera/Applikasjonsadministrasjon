@@ -1,5 +1,7 @@
 package com.example.applikasjonsadministrasjon.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,6 +41,7 @@ public class Stilling {
 
     @ManyToOne
     @JoinColumn(name="madePositions")
+
     private User madeByUser;
 
     public void setMadeByUser(User user) {

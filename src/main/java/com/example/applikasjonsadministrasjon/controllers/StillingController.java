@@ -76,6 +76,12 @@ public class StillingController {
            return ResponseEntity.badRequest().build();
        }
 
+       // Check if the user is already associated with the stilling
+       if (stilling.getUsers().contains(user)) {
+           // If they are, just return without making any changes
+           return ResponseEntity.noContent().build();
+       }
+
        // Add the user to the stilling
        stilling.getUsers().add(user);
        //stillingService.add(stilling);

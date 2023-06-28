@@ -53,6 +53,9 @@ public class StillingServiceImpl implements StillingService{
 
 
     public void update(Stilling entity) {
+        //
+
+
         stillingRepository.save(entity);
     }
 
@@ -62,6 +65,8 @@ public class StillingServiceImpl implements StillingService{
         for (User u : stilling.getUsers()) {
             u.getStilling().remove(stilling);
         }
+        User madeBy=stilling.getMadeByUser();
+        madeBy.getMadePositions().remove(stilling);
         stillingRepository.deleteById(id);
     }
 

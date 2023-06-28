@@ -1,6 +1,7 @@
 package com.example.applikasjonsadministrasjon.models.dto.user;
 
 import com.example.applikasjonsadministrasjon.models.Stilling;
+import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.util.Set;

@@ -6,9 +6,7 @@ import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingDTO;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingPostDTO;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingUpdateDTO;
 import com.example.applikasjonsadministrasjon.repositories.UserRepository;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Named;
+import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -31,11 +29,15 @@ public abstract class StillingMapper {
 
     @Mapping(target = "users", source = "users", qualifiedByName = "idsToUsers")
     @Mapping(target = "madeByUser", source = "madeByUser", qualifiedByName = "idToUser")
+
     public abstract Stilling stillingUpdateDtoToStilling(StillingUpdateDTO projectDTO);
+
 
     @Mapping(target = "users", source = "users", qualifiedByName = "idsToUsers")
     @Mapping(target = "madeByUser", source = "madeByUser", qualifiedByName = "idToUser")
     public abstract Stilling stillingPostDtoToStilling(StillingPostDTO stillingDto);
+
+
 
     @Named("usersToIds")
     Set<String> map(Set<User> source) {
