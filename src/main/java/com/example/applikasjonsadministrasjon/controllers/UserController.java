@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
-@CrossOrigin(allowedHeaders = "*")
+//@CrossOrigin(allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "api/v1/users")
 public class UserController {

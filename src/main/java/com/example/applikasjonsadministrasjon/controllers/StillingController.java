@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.Set;
 
-@CrossOrigin("*")
+//@CrossOrigin("*")
 @RestController
 @RequestMapping(path = "api/v1/stilling")
 public class StillingController {
