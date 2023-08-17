@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 
 
 @RestController
@@ -30,8 +32,7 @@ public class ChatBotController {
 private RestTemplate restTemplate;
 
 
-@Value("${OPENAI_API_KEY}")
-    private String openaiApiKey;
+private String openaiApiKey = Dotenv.load().get("OPENAI_API_KEY");
 
 private String sendToOpenAI(String userMessageInput) {
     String openAiUrl = "https://api.openai.com/v1/chat/completions";  // URL may change, refer to OpenAI documentation
