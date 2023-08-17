@@ -2,9 +2,9 @@ package com.example.applikasjonsadministrasjon.controllers;
 
 import com.example.applikasjonsadministrasjon.mappers.StillingMapper;
 import com.example.applikasjonsadministrasjon.mappers.UserMapper;
-import com.example.applikasjonsadministrasjon.models.User;
 import com.example.applikasjonsadministrasjon.models.dto.user.UserPostDTO;
 import com.example.applikasjonsadministrasjon.models.dto.user.UserUpdateDTO;
+import com.example.applikasjonsadministrasjon.models.tables.User;
 import com.example.applikasjonsadministrasjon.services.user.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -2,11 +2,11 @@ package com.example.applikasjonsadministrasjon.controllers;
 
 import com.example.applikasjonsadministrasjon.mappers.StillingMapper;
 import com.example.applikasjonsadministrasjon.mappers.UserMapper;
-import com.example.applikasjonsadministrasjon.models.Stilling;
-import com.example.applikasjonsadministrasjon.models.User;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingDTO;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingPostDTO;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingUpdateDTO;
+import com.example.applikasjonsadministrasjon.models.tables.Stilling;
+import com.example.applikasjonsadministrasjon.models.tables.User;
 import com.example.applikasjonsadministrasjon.services.stilling.StillingService;
 import com.example.applikasjonsadministrasjon.services.user.UserService;
 import org.springframework.http.ResponseEntity;

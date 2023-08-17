@@ -1,9 +1,10 @@
 package com.example.applikasjonsadministrasjon.models.dto.user;
 
-import com.example.applikasjonsadministrasjon.models.Stilling;
 import lombok.Data;
 
 import java.util.Set;
+
+import com.example.applikasjonsadministrasjon.models.tables.Stilling;
 
 @Data
 public class UserPostDTO {
@@ -16,4 +17,5 @@ public class UserPostDTO {
     private Set<Integer> madePositions;
 
     private Set<Integer> stilling;
+    private Set<Integer> senderUser;
 }

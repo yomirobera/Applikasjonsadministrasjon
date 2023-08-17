@@ -1,4 +1,4 @@
-    package com.example.applikasjonsadministrasjon.models;
+    package com.example.applikasjonsadministrasjon.models.tables;
 
     import com.fasterxml.jackson.annotation.JsonIgnore;
     import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -31,12 +31,17 @@
 
         @OneToMany(mappedBy = "madeByUser")
         private Set<Stilling> madePositions;
+
+
         @ManyToMany
         @JoinTable(name = "Bruker_Stilling",
                 joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "stilling_id"))
 
         private Set<Stilling> stilling;
+
+        @OneToMany(mappedBy ="senderUser" )
+        private Set<Messages> userMessages;
 
 
     }

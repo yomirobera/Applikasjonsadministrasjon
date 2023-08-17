@@ -1,10 +1,10 @@
 package com.example.applikasjonsadministrasjon.mappers;
 
-import com.example.applikasjonsadministrasjon.models.Stilling;
-import com.example.applikasjonsadministrasjon.models.User;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingDTO;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingPostDTO;
 import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingUpdateDTO;
+import com.example.applikasjonsadministrasjon.models.tables.Stilling;
+import com.example.applikasjonsadministrasjon.models.tables.User;
 import com.example.applikasjonsadministrasjon.repositories.UserRepository;
 import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.example.applikasjonsadministrasjon.services.user;
 
-import com.example.applikasjonsadministrasjon.models.Stilling;
-import com.example.applikasjonsadministrasjon.models.User;
+import com.example.applikasjonsadministrasjon.models.tables.Stilling;
+import com.example.applikasjonsadministrasjon.models.tables.User;
 import com.example.applikasjonsadministrasjon.repositories.StillingRepository;
 import com.example.applikasjonsadministrasjon.repositories.UserRepository;
 import com.example.applikasjonsadministrasjon.utils.exceptions.UserNotFoundException;

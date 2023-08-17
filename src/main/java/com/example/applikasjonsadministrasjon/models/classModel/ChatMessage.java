@@ -1,4 +1,4 @@
-package com.example.applikasjonsadministrasjon.models;
+package com.example.applikasjonsadministrasjon.models.classModel;
 
 import lombok.*;
 

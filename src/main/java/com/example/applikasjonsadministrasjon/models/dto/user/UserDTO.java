@@ -1,9 +1,10 @@
 package com.example.applikasjonsadministrasjon.models.dto.user;
 
-import com.example.applikasjonsadministrasjon.models.Stilling;
 import lombok.Data;
 
 import java.util.Set;
+
+import com.example.applikasjonsadministrasjon.models.tables.Stilling;
 
 @Data
 public class UserDTO {
@@ -14,4 +15,5 @@ public class UserDTO {
     private boolean selger;
     private Set<Integer> madePositions;
     private Set<Integer> stilling;
+    private Set<Integer> senderUser;
 }

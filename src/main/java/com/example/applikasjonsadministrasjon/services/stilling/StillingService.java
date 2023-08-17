@@ -1,7 +1,7 @@
 package com.example.applikasjonsadministrasjon.services.stilling;
 
-import com.example.applikasjonsadministrasjon.models.Stilling;
-import com.example.applikasjonsadministrasjon.models.User;
+import com.example.applikasjonsadministrasjon.models.tables.Stilling;
+import com.example.applikasjonsadministrasjon.models.tables.User;
 import com.example.applikasjonsadministrasjon.services.CrudService;
 
 import java.util.Set;

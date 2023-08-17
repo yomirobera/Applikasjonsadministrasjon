@@ -1,10 +1,11 @@
 package com.example.applikasjonsadministrasjon.models.dto.user;
 
-import com.example.applikasjonsadministrasjon.models.Stilling;
 import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.util.Set;
+
+import com.example.applikasjonsadministrasjon.models.tables.Stilling;
 
 @Data
 public class UserUpdateDTO {
@@ -17,5 +18,6 @@ public class UserUpdateDTO {
     private Set<Integer> madePositions;
 
     private Set<Integer> stilling;
+    private Set<Integer> senderUser;
 
 }

@@ -1,10 +1,14 @@
 package com.example.applikasjonsadministrasjon.mappers;
 
-import com.example.applikasjonsadministrasjon.models.Stilling;
-import com.example.applikasjonsadministrasjon.models.User;
+import com.example.applikasjonsadministrasjon.models.tables.Stilling;
+import com.example.applikasjonsadministrasjon.models.tables.User;
 import com.example.applikasjonsadministrasjon.models.dto.user.UserDTO;
 import com.example.applikasjonsadministrasjon.models.dto.user.UserPostDTO;
 import com.example.applikasjonsadministrasjon.models.dto.user.UserUpdateDTO;
+import com.example.applikasjonsadministrasjon.models.tables.Messages;
+import com.example.applikasjonsadministrasjon.models.tables.Stilling;
+import com.example.applikasjonsadministrasjon.models.tables.User;
+import com.example.applikasjonsadministrasjon.repositories.MessagesRepository;
 import com.example.applikasjonsadministrasjon.repositories.StillingRepository;
 import com.example.applikasjonsadministrasjon.repositories.UserRepository;
 import org.mapstruct.*;
@@ -24,11 +28,13 @@ public abstract class UserMapper {
    @Autowired
     UserRepository userRepository;
 
-
+    @Autowired
+    MessagesRepository messagesRepository;
 
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "stillingToIds")
     //@Mapping(target = "madePositions", source= "stilling", qualifiedByName = "stillingToIds")
     @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "stillingToIds")
+    @Mapping(target = "senderUser", source = "userMessages", qualifiedByName = "messagesToIds")
     public abstract UserDTO userToUserDto(User user);
 
 
@@ -36,11 +42,13 @@ public abstract class UserMapper {
 
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "idsToStilling")
     @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "idsToStilling")
+    @Mapping(target = "userMessages", source = "senderUser", qualifiedByName = "idsToMessages")
     public abstract User userUpdateDtoToUser(UserUpdateDTO userDTO);
 
 
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "idsToStilling")
     @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "idsToStilling")
+    @Mapping(target = "userMessages", source = "senderUser", qualifiedByName = "idsToMessages")
     public abstract User userPostDtoToUser(UserPostDTO userDto);
 
 
@@ -98,6 +106,23 @@ public abstract class UserMapper {
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid id: " + id));
     }
+
+    @Named("idsToMessages")
+    Set<Messages> mapToMessages(Set<Integer> source) {
+        if (source == null) return null;
+        return source.stream().map(id -> messagesRepository.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Invalid id: " + id)))
+                .collect(Collectors.toSet());
+    }
+
+    @Named("messagesToIds")
+    Set<Integer> mapMessagesToIds(Set<Messages> source) {
+        if (source == null) return null;
+        return source.stream().map(x -> x.getId()
+                        )
+                .collect(Collectors.toSet());
+    }
+    
 }
 
 

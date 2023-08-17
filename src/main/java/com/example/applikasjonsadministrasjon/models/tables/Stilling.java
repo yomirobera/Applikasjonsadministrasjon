@@ -1,4 +1,4 @@
-package com.example.applikasjonsadministrasjon.models;
+package com.example.applikasjonsadministrasjon.models.tables;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,8 +40,7 @@ public class Stilling {
     private String kode;
 
     @ManyToOne
-    @JoinColumn(name="madePositions")
-
+    @JoinColumn(name = "made_by_user_id")
     private User madeByUser;
 
     public void setMadeByUser(User user) {
