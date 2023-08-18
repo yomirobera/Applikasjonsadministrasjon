@@ -22,6 +22,7 @@ import com.example.applikasjonsadministrasjon.models.dto.stilling.StillingUpdate
 import com.example.applikasjonsadministrasjon.models.tables.Messages;
 import com.example.applikasjonsadministrasjon.models.tables.Stilling;
 import com.example.applikasjonsadministrasjon.models.tables.User;
+import com.example.applikasjonsadministrasjon.services.chatSession.ChatSessionService;
 import com.example.applikasjonsadministrasjon.services.messages.MessagesService;
 import com.example.applikasjonsadministrasjon.services.stilling.StillingService;
 import com.example.applikasjonsadministrasjon.services.user.UserService;
@@ -36,13 +37,15 @@ public class MessagesController {
 
     private final MessagesService messagesService;
     private final MessagesMapper messagesMapper;
+    private final ChatSessionService chatSessionService;
     
 
     
 
-    public MessagesController(MessagesService messagesService, MessagesMapper messagesMapper, UserService userService, MessagesMapper MessagesMapper) {
+    public MessagesController(MessagesService messagesService, MessagesMapper messagesMapper, UserService userService, MessagesMapper MessagesMapper, ChatSessionService chatSessionService) {
         this.messagesService = messagesService;
         this.messagesMapper = messagesMapper;
+        this.chatSessionService = chatSessionService;
         
         
     }
@@ -57,6 +60,13 @@ public class MessagesController {
     public ResponseEntity getById(@PathVariable int id) {
         return ResponseEntity.ok(messagesMapper.messageToMessagesDTO(messagesService.findById(id)));
     }
+
+    @GetMapping("session/{sessionId}")
+    public ResponseEntity getAllMessagesBySessId(@PathVariable int sessionId){
+        return ResponseEntity.ok(messagesMapper.messagesToMessagesDtos(messagesService.findAllBySessId(sessionId)));
+    }
+
+    
 
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody MessagesUpdateDTO messagesUpdateDTO, @PathVariable int id) {

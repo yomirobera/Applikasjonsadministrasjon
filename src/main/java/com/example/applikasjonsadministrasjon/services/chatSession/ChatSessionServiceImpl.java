@@ -1,7 +1,10 @@
 package com.example.applikasjonsadministrasjon.services.chatSession;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+
+import org.glassfish.jaxb.runtime.v2.schemagen.xmlschema.List;
 import org.springframework.stereotype.Service;
 
 import com.example.applikasjonsadministrasjon.models.tables.ChatSession;
@@ -37,6 +40,22 @@ this.chatSessionRepository=chatSessionRepository;
        
         return savedStilling;
     }
+/* 
+    @Override
+    public ChatSession findByParticipants(String part1, String part2){
+        ArrayList<ChatSession> all = (ArrayList)chatSessionRepository.findAll();
+            for (ChatSession a : all) {
+                if((a.getParticipant1().getId().equals(part1) || a.getParticipant1().getId().equals(part2)) && (a.getParticipant2().getId().equals( part1)) || (a.getParticipant2().getId().equals( part2)) ){
+                    return a;
+                }
+            }
+            return null;
+        } */
+
+        public ChatSession findByParticipants(String part1, String part2) {
+            return chatSessionRepository.findByParticipants(part1, part2).orElse(null);
+        }
+
 
 
     public void update(ChatSession entity) {

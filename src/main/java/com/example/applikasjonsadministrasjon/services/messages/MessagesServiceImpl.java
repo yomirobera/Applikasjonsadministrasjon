@@ -36,6 +36,11 @@ this.messagesRepository=messagesRepository;
         return messagesRepository.findAll();
     }
 
+    @Override
+    public Collection<Messages> findAllBySessId(int sessId) {
+        return messagesRepository.findAllBySessId(sessId);
+    }
+
 
     @Override
     public Messages add(Messages entity) {

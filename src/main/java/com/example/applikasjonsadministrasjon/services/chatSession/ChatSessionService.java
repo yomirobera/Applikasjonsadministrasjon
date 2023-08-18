@@ -4,5 +4,6 @@ import com.example.applikasjonsadministrasjon.models.tables.ChatSession;
 import com.example.applikasjonsadministrasjon.services.CrudService;
 
 public interface ChatSessionService extends CrudService<ChatSession, Integer> {
+    public ChatSession findByParticipants(String a, String b);
     
 }

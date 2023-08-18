@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.applikasjonsadministrasjon.mappers.ChatSessionMapper;
@@ -53,6 +54,16 @@ public class ChatSessionController {
     public ResponseEntity getById(@PathVariable int id) {
         return ResponseEntity.ok(chatSessionMapper.chatSessionToChatSessionDTO(chatSessionService.findById(id)));
     }
+
+    @GetMapping("{senderId}/{recipientId}")
+    public ResponseEntity getChatSessionByParticipants(@PathVariable String senderId, @PathVariable String recipientId) {
+        ChatSession session = chatSessionService.findByParticipants(senderId, recipientId);
+        if (session != null) {
+            return ResponseEntity.ok(chatSessionMapper.chatSessionToChatSessionDTO(session));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+}
 
     @PutMapping("{id}")
     public ResponseEntity update(@RequestBody ChatSessionDTO chatSessionObj, @PathVariable int id) {

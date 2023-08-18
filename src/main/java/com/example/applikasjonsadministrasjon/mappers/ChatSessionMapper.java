@@ -13,6 +13,7 @@ import com.example.applikasjonsadministrasjon.models.dto.messages.MessagesPostDT
 import com.example.applikasjonsadministrasjon.models.dto.messages.MessagesUpdateDTO;
 import com.example.applikasjonsadministrasjon.models.tables.ChatSession;
 import com.example.applikasjonsadministrasjon.models.tables.Messages;
+import com.example.applikasjonsadministrasjon.models.tables.User;
 import com.example.applikasjonsadministrasjon.repositories.ChatSessionRepository;
 import com.example.applikasjonsadministrasjon.repositories.MessagesRepository;
 import com.example.applikasjonsadministrasjon.repositories.UserRepository;
@@ -28,9 +29,13 @@ public abstract class ChatSessionMapper {
     ChatSessionRepository chatSessionRepository;
 
     @Mapping(target = "chatSessionMessages", source = "chatSessionMessages", qualifiedByName = "chatSessionToId")
+    @Mapping(target = "participant1", source = "participant1", qualifiedByName = "userToId")
+    @Mapping(target = "participant2", source = "participant2", qualifiedByName = "userToId")
     public abstract ChatSessionDTO chatSessionToChatSessionDTO(ChatSession chatSession);
 
     @Mapping(target = "chatSessionMessages", source = "chatSessionMessages", qualifiedByName = "idToChatSession")
+    @Mapping(target = "participant1", source = "participant1", qualifiedByName = "idToUser")
+    @Mapping(target = "participant2", source = "participant2", qualifiedByName = "idToUser")
     public abstract ChatSession chatSessionDTOToChatSession(ChatSessionDTO chatSessionDTO);
 
     public abstract Collection<ChatSessionDTO> messagesToMessagesDtos(Collection<ChatSession> chatSessions);
@@ -51,4 +56,19 @@ public abstract class ChatSessionMapper {
         return source.stream().map(message -> message.getId())
                 .collect(Collectors.toSet());
     }
+
+       @Named("userToId")
+    String map(User source) {
+        if (source == null) return null;
+        return source.getId();
+    }
+
+    @Named("idToUser")
+    User map(String source) {
+        if (source == null) return null;
+        return userRepository.findById(source)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid id: " + source));
+    }
+
+    
 }

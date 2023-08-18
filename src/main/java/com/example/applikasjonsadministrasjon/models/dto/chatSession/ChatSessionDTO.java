@@ -14,4 +14,8 @@ public class ChatSessionDTO {
     private Set<Integer> chatSessionMessages;
 
     private String timeStamp;
+
+    private String participant1;
+
+    private String participant2;
 }

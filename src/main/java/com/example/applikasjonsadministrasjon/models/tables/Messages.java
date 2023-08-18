@@ -29,6 +29,7 @@ public class Messages {
     @JoinColumn(name="sender_user_id")
     private User senderUser;
 
+
     private String message;
 
     private String timeStamp;

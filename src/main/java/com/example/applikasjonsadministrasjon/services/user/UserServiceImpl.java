@@ -38,6 +38,9 @@ public class UserServiceImpl implements UserService {
 
         // Iterate through the stillings associated with the user
         for (Stilling stilling : entity.getStilling()) {
+            if(stilling == null){
+                break;
+            }
             // Add the user to the stilling
             stilling.getUsers().add(savedUser);
             // Update the stilling entity

@@ -8,7 +8,8 @@
     import jakarta.persistence.GenerationType;
     import jakarta.persistence.Id;
     import jakarta.persistence.JoinColumn;
-    import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
     import jakarta.persistence.Table;
     import lombok.Getter;
     import lombok.Setter;
@@ -30,5 +31,13 @@
         private Set<Messages> chatSessionMessages;
 
         private String timeStamp;
+
+        @ManyToOne
+        @JoinColumn(name="user_1_id")
+        private User participant1;
+
+        @ManyToOne
+        @JoinColumn(name="user_2_id")
+        private User participant2;
     }
  
