@@ -41,6 +41,7 @@
         private Set<Stilling> stilling;
 
         @OneToMany(mappedBy ="senderUser" )
+       
         private Set<Messages> userMessages;
 
 

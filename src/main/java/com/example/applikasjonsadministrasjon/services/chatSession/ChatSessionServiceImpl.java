@@ -2,13 +2,14 @@ package com.example.applikasjonsadministrasjon.services.chatSession;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 
-import org.glassfish.jaxb.runtime.v2.schemagen.xmlschema.List;
 import org.springframework.stereotype.Service;
 
 import com.example.applikasjonsadministrasjon.models.tables.ChatSession;
 import com.example.applikasjonsadministrasjon.repositories.ChatSessionRepository;
+import com.example.applikasjonsadministrasjon.utils.exceptions.ChatSessionExists;
 import com.example.applikasjonsadministrasjon.utils.exceptions.ChatSessionNotFoundException;
 import com.example.applikasjonsadministrasjon.utils.exceptions.StillingNotFoundException;
 
@@ -36,9 +37,14 @@ this.chatSessionRepository=chatSessionRepository;
 
     @Override
     public ChatSession add(ChatSession entity) {
+        Optional<ChatSession> check= chatSessionRepository.findByParticipants(entity.getParticipant1().getId(), entity.getParticipant2().getId());
+        if(check.isPresent()){
+            return check.get();
+            
+        }else{
         ChatSession savedStilling = chatSessionRepository.save(entity);
        
-        return savedStilling;
+        return savedStilling;}
     }
 /* 
     @Override

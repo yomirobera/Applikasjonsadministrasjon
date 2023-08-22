@@ -13,7 +13,7 @@ public class ApplikasjonsadministrasjonApplication {
 
     public static void main(String[] args) {
         Dotenv dotenv = Dotenv.load();
-        System.out.println( dotenv.get("OPENAI_API_KEY"));
+        //System.out.println( dotenv.get("OPENAI_API_KEY"));
         SpringApplication.run(ApplikasjonsadministrasjonApplication.class, args);
     }
 

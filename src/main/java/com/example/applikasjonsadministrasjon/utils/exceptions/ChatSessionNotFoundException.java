@@ -11,3 +11,4 @@ public class ChatSessionNotFoundException extends RuntimeException {
         super(String.format("ChatSession with %d not found",id));
     }
 }
+

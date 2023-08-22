@@ -68,10 +68,10 @@ private String sendToOpenAI(String userMessageInput) {
     .getJSONObject("message")
     .getString("content")
     .trim();
-    JSONObject contentObject = new JSONObject(content);
-    String assistantMessage = contentObject.getString("assistantMessage");
+    //JSONObject contentObject = new JSONObject(content);
+    //String assistantMessage = contentObject.getString("assistantMessage");
 
-    return assistantMessage;
+    return content;
 
 }
 }

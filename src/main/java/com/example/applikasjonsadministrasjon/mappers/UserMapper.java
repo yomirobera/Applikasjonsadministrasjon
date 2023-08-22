@@ -49,6 +49,7 @@ public abstract class UserMapper {
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "idsToStilling")
     @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "idsToStilling")
     @Mapping(target = "userMessages", source = "senderUser", qualifiedByName = "idsToMessages")
+    
     public abstract User userPostDtoToUser(UserPostDTO userDto);
 
 
@@ -59,6 +60,7 @@ public abstract class UserMapper {
     @Mapping(source = "users", target ="users" , qualifiedByName = "stringsToUsers")
     @Mapping(target = "stilling", source = "stilling", qualifiedByName = "stillingToIds")
     @Mapping(target = "madePositions", source = "madePositions", qualifiedByName = "stillingToIds")
+    
     public abstract Set<User> stringsUsersToUsers(Set<String> users);
 
     @AfterMapping
@@ -72,6 +74,13 @@ public abstract class UserMapper {
     protected void updateMadePositionField(Set<String> users, @MappingTarget Set<User> userSet) {
         if (users != null && userSet != null) {
             userSet.forEach(user -> user.setMadePositions(null));
+        }
+    }
+
+    @AfterMapping
+    protected void updateUserMessagesField(Set<String> users, @MappingTarget Set<User> userSet) {
+        if (users != null && userSet != null) {
+            userSet.forEach(user -> user.setUserMessages(null));
         }
     }
 
