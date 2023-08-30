@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -29,7 +30,7 @@ public class Messages {
     @JoinColumn(name="sender_user_id")
     private User senderUser;
 
-
+    
     private String message;
 
     private String timeStamp;
